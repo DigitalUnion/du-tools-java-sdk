@@ -1,5 +1,7 @@
 package cn.shuzilm.tools.serial;
 
+import cn.shuzilm.tools.aes.AesCBCUtils;
+
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ public class Serial {
         try {
             sid = sid.substring(0,sid.length()-2);
             byte[] decode = Base64.getUrlDecoder().decode(sid);
-            byte[] data = AesUtils.aesDecrypt(decode, secret.getBytes());
+            byte[] data = AesCBCUtils.aesDecrypt(decode, secret.getBytes());
             if (data == null) {
                 resp.isLegal = false;
                 return resp;

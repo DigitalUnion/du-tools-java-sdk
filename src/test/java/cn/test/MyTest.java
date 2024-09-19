@@ -13,11 +13,11 @@ public class MyTest {
         System.out.println(ok);
         //密钥字典
         HashMap<String,String > keyMap = new HashMap<>();
-        keyMap.put("1","1d39d9f148ea636e151f0eec7bda9c37bbaf1ff9466b13ad0ffc1677c23610c7");
-        keyMap.put("2","1d39d9f148ea636e151f0eec7bda9c37bbaf1ff9466b13ad0ffc1677c23610c7");
-        keyMap.put("3","1d39d9f148ea636e151f0eec7bda9c37bbaf1ff9466b13ad0ffc1677c23610c7");
+        keyMap.put("1","89efda9f868e286f747bd48ea1ed6074af2bbe45bec2a6d6768f4b199ba4f4e1");
+        keyMap.put("2","89efda9f868e286f747bd48ea1ed6074af2bbe45bec2a6d6768f4b199ba4f4e1");
+        keyMap.put("3","89efda9f868e286f747bd48ea1ed6074af2bbe45bec2a6d6768f4b199ba4f4e1");
         //流水号
-        String sid = "PhJM0lDLt1lF7ODIXxSD7W2GKJ1w9MTWcQf4L1KcXAY_1"; //命中2规则
+        String sid = "gCoQVLM0lfvhq17Y2iOTNo3r2aLEOqXxjU6zqV-k6N-M5DKUqqjb93ZqKg02_lQR_1"; //命中2规则
         //获取秘钥
         String key = keyMap.get(Serial.getVersion(sid));
         if (key != null) {

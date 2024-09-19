@@ -1,4 +1,4 @@
-package cn.shuzilm.tools.serial;
+package cn.shuzilm.tools.aes;
 
 
 import javax.crypto.Cipher;
@@ -8,7 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.security.spec.AlgorithmParameterSpec;
 
-public class AesUtils {
+public class AesCBCUtils {
 
     private static final String ALGORITHM = "AES/CBC/PKCS5Padding";
 

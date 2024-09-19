@@ -1,5 +1,7 @@
 package cn.test;
 
+import cn.shuzilm.tools.aes.AesCFBUtils;
+import cn.shuzilm.tools.base64.Base64Utils;
 import cn.shuzilm.tools.cdid.CDID;
 
 import java.io.BufferedReader;
@@ -7,23 +9,10 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class MyTest2 {
-    public static void readFileByLine(String filePath) {
-        // 使用try-with-resources语句自动关闭资源
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            // 循环读取每一行，直到文件结束
-            while ((line = reader.readLine()) != null) {
-                // 处理每一行
-                System.out.println(CDID.verifyDid(line));
-            }
-        } catch (IOException e) {
-            System.err.println("An error occurred while reading the file: " + e.getMessage());
-        }
-    }
-
-    public static void main(String[] args) {
-        // 文件路径，请根据实际情况替换
-        String filePath = "cdid.txt";
-        readFileByLine(filePath);
+    public static void main(String[] args) throws Exception {
+        String src = "rb4KDKcdFBNMEs/1JtLvbml6qDpzIji54p5/QSzxCwCCz5da5LnYBcDJeUHXO8go/mWx+JRDv6zBIl+6XW8vQAt0LWKSFfulx83ZS7Ue252B3iQhj0uj6ZIsa7DZj7b0lmZ0M298hQy4zKM+K1cS4VpsXn3nyf+ylC2x/tL+mtrHgjHa/PdiqZvHZ6OU7TAJlUJr8s1Vi7DC3vjkIh4VLdWmVK/QzmMKBzWmIsonhMPsIH6s1l2w3uxl/nJVuZeYRmQTJXsOnYlxDt+kCpheAOuT1ro7JQl1KHuxDYO1lIDCa3WCJ0bDduqSRkKI/AIGWLJbxYzuqdtMOWhj+kTVinervIxPh3yT6DVr0bAfpHQkC/Wx+PsC7YMroDQH5Ls2HhtHZuM7Ze4AyAt5xut3NEW353JSzDwPmRNFKocuJw==";
+        String key = "xxxx";
+        byte[] res = AesCFBUtils.aesDecrypt(Base64Utils.decodeToString(src), key.getBytes());
+        System.out.println(new String(res));
     }
 }
