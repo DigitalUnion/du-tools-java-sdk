@@ -15,6 +15,7 @@ public class Serial {
     public static SerialResp Decode(String sid,String secret){
         SerialResp resp = new SerialResp();
         try {
+            String ver = sid.substring(sid.length()-1);
             sid = sid.substring(0,sid.length()-2);
             byte[] decode = Base64.getUrlDecoder().decode(sid);
             byte[] data = AesCBCUtils.aesDecrypt(decode, secret.getBytes());
@@ -23,13 +24,19 @@ public class Serial {
                 return resp;
             }
             sid = new String(data);
+            sid = sid.trim();
             if (!validSerial(sid)) {
                 resp.isLegal = false;
                 return resp;
             }
             resp.isLegal = true;
             resp.timestamp = getTimestamp(sid.substring(12,20));
-            resp.rules = getRules(sid.substring(20,sid.length()-8));
+            if (ver.equals("1")){
+                resp.rules = getRules(sid.substring(20,sid.length()-8));
+            }else {
+                resp.rules = getRules(sid.substring(20,sid.length()-11));
+                resp.statusCode = sid.substring(sid.length()-11,sid.length()-8);
+            }
             return resp;
         }catch (Exception e) {
             resp.isLegal = false;
@@ -37,7 +44,7 @@ public class Serial {
         }
     }
 
-    private static long getTimestamp(String timestampEncoded) {
+    public static long getTimestamp(String timestampEncoded) {
         return base62ToDecimal(timestampEncoded).longValue();
     }
     private static ArrayList<String> getRules(String ruleStr) {
@@ -64,8 +71,7 @@ public class Serial {
     }
 
     public static String getVersion(String sid){
-        int value = Character.digit(sid.charAt(sid.length()-1), 32);
-        return Integer.toString(value);
+        return sid.substring(sid.length()-1);
     }
     private static BigInteger base62ToDecimal(String base62Number) {
         BigInteger result = BigInteger.ZERO;

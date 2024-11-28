@@ -7,8 +7,17 @@ public class SerialResp {
     public boolean isLegal;
     //时间戳，ms级
     public long timestamp;
+    public String statusCode;
     //规则号
     public ArrayList<String> rules;
+
+    public String getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
+    }
 
     public boolean isLegal() {
         return isLegal;
@@ -39,6 +48,7 @@ public class SerialResp {
         return "SerialResp{" +
                 "isLegal=" + isLegal +
                 ", timestamp=" + timestamp +
+                ", statusCode='" + statusCode + '\'' +
                 ", rules=" + rules +
                 '}';
     }
